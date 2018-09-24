@@ -40,7 +40,7 @@ namespace TextAdventureV2
                 Console.WriteLine("Do you want to try again? (Y/N)");
                 Console.Write(">");
                 string answer = Console.ReadLine().ToUpper();
-                if (answer == "N")
+                if (!answer == "Y")
                 {
                     return;
                 }
@@ -49,7 +49,7 @@ namespace TextAdventureV2
             Console.WriteLine("**UNAUTHORIZED PERSONEL DETECTED**");
             Console.WriteLine("You hear doors lock all around the hospital and hear sounds of growling and slowly moving people around you.");
             Console.WriteLine("In your terrified state your heart stops and you die.");
-            Console.WriteLine("*************** GAME OVER ***************");
+            Console.ReadLine();
             gameIsRunning = false;
             return;
         }
