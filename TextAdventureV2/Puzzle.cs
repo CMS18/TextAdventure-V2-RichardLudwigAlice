@@ -40,7 +40,7 @@ namespace TextAdventureV2
                 Console.WriteLine("Do you want to try again? (Y/N)");
                 Console.Write(">");
                 string answer = Console.ReadLine().ToUpper();
-                if (!answer == "Y")
+                if (answer != "Y")
                 {
                     return;
                 }
