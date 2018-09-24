@@ -110,7 +110,7 @@ namespace TextAdventureV2
 
             cellphone = new Item();
             cellphone.AddName("CELLPHONE");
-            cellphone.AddDescription("The cellphone of the dead guard.");
+            cellphone.AddDescription("The cellphone of the dead guard. It is locked with a fingerprint password.");
             cellphone.AddRoomDescription("There is a cellphone laying on the ground.");
             cellphone.AddId("id4");
             cellphone.AddMatchId("mid3");
