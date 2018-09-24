@@ -35,7 +35,7 @@ namespace TextAdventureV2
             this.StartPage();
             this.InitializePlayer();
             this.InitializeItems();
-            this.InitializeRooms();            
+            this.InitializeRooms();
             this.Introduction();
             this.Update();
         }
@@ -52,7 +52,7 @@ namespace TextAdventureV2
      
             Console.WriteLine("The escape from zombie hospital V0.1");
             this.Pause();
-            Console.Clear();            
+            Console.Clear();
         }
 
         private void InitializeItems()
@@ -141,7 +141,7 @@ namespace TextAdventureV2
         private void InitializePlayer()
         {
             player = new Player();
-            Console.WriteLine("What is your name? ");            
+            Console.WriteLine("What is your name? ");
             player.SetName(Console.ReadLine());
             Console.WriteLine("How old are you? ");
             player.SetAge(Console.ReadLine());
