@@ -140,14 +140,14 @@ namespace TextAdventureV2
                     currentRoom.SetAsUnvisited();
                     continue;
                 }
-                if (inputArray.Length > 1) { 
-                    if (inputArray[0] == "PICK" && inputArray[1] == "UP")
-                    {
-                        Get(inputArray.Skip(2).ToArray());
-                    }
-                }
+
                 if (inputArray[0] == "GET" || inputArray[0] == "TAKE" || inputArray[0] == "PICK")
                 {
+                    if (inputArray[1] == "UP")
+                    {
+                        Get(inputArray.Skip(2).ToArray());
+                        continue;
+                    }
                     Get(inputArray.Skip(1).ToArray());
                 }
                 else if (inputArray[0] == "INVENTORY" || inputArray[0] == "I")
