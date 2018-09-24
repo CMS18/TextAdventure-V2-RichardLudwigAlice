@@ -10,11 +10,13 @@ namespace TextAdventureV2
     class Game
     {
         Player player;
+        Puzzle puzzle = new Puzzle();
 
         Room currentRoom;
         Room hospitalBedroom;
         Room hallway;
         Room bathroom;
+        Room entrance;
 
         List<Room> allRooms = new List<Room>();
         List<Item> playerInventory = new List<Item>();
@@ -27,17 +29,40 @@ namespace TextAdventureV2
         Item finger;
         Item cellphone;
         Item unlockedCellphone;
+        Item keypad;
 
         private bool gameIsRunning = true;
+        private bool gameComplete = false;
 
         public Game()
         {
             this.StartPage();
             this.InitializePlayer();
             this.InitializeItems();
-            this.InitializeRooms();            
+            this.InitializeRooms();
+            this.InitializePuzzle();
             this.Introduction();
             this.Update();
+            this.EndScreen();
+        }
+
+        private void EndScreen()
+        {
+            if (gameComplete)
+            {
+                Console.Clear();
+                Console.WriteLine("CONGRATULATIONS! The doors swing open and you made it out alive! Now go outside and enjoy the day!");
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("YOU DIED! Now go outside to contemplate on your own life...");
+            }
+        }
+
+        private void InitializePuzzle()
+        {
+            puzzle.GenerateRandomNumber();
         }
 
         private void StartPage()
@@ -99,6 +124,13 @@ namespace TextAdventureV2
             unlockedCellphone.AddId("id5");
             unlockedCellphone.AddMatchId("midNULL");
 
+            keypad = new Item();
+            keypad.AddName("KEYPAD");
+            keypad.AddDescription("A remote keypad that looks like it is used with the big door at the entrance.");
+            keypad.AddRoomDescription("There is a mobile remote on the wall.");
+            keypad.AddId("id6");
+            keypad.AddMatchId("midNULL");
+            keypad.SetUsable(true);
         }
 
         private void InitializeRooms()
@@ -120,20 +152,28 @@ namespace TextAdventureV2
             hallway = new Room();
             hallway.AddName("HALLWAY");
             hallway.AddDescription("There's no people around and everything else seems fine.\n"
-                + "There's an empty reception with a computer and a phone at the far end of the hallway.\n"
-                + "To the east the corridor turns and to the north is an emergency exit.\n"
+                + "There's an empty reception with a computer and a stationary phone at the far end of the hallway.\n"
+                + "To the east the corridor turns and to the north is a barred emergency exit.\n"
                 + "There is also a dead guard laying on the ground.");
             hallway.AddItem(cellphone);
             hallway.AddItem(finger);
+
+            entrance = new Room();
+            entrance.AddName("ENTRANCE");
+            entrance.AddDescription("There is a large entrance door to the north and a keypad next to it.");
+            entrance.AddItem(keypad);
 
             hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked", "id1", "door", "A white door. Looks like it leads out to the hall"));
             hospitalBedroom.AddExit(new Exit(bathroom, "West"));
             hallway.AddExit(new Exit(hospitalBedroom, "West"));
             bathroom.AddExit(new Exit(hospitalBedroom, "East"));
+            hallway.AddExit(new Exit(entrance, "East"));
+            entrance.AddExit(new Exit(hallway, "West"));
 
             allRooms.Add(hospitalBedroom);
             allRooms.Add(bathroom);
             allRooms.Add(hallway);
+            allRooms.Add(entrance);
 
             currentRoom = hospitalBedroom;
         }
@@ -337,6 +377,11 @@ namespace TextAdventureV2
             {
                 if (input.Contains(item.Name.ToUpper()))
                 {
+                    if (item.Name == "KEYPAD")
+                    {
+                        puzzle.RunPuzzle(ref gameIsRunning, ref gameComplete);
+                        return;
+                    }
                     if (item.IsUsable())
                     {
                         if (input.Length < 3)

@@ -8,48 +8,55 @@ namespace TextAdventureV2
 {
     class Puzzle
     {
-        private void PuzzleGame()
+        Random rnd = new Random();
+        private int rndNumber;
+        public void RunPuzzle(ref bool gameIsRunning, ref bool gameComplete)
         {
-            Random random = new Random();
-            Console.WriteLine("Seems like the lock needs a number between 1 and 10 to be unlocked. You have 3 attempts.");
 
-            Console.WriteLine("\nGuess a number between 1 and 10.");
-            int number = random.Next(1, 11);
             int attempts = 1;
-            int guess = 0;
+            string guess = "0";
+            string correctNumber = "461" + rndNumber.ToString();
 
-            while (guess != number || attempts == 3)
+            while (guess != correctNumber || attempts < 10)
             {
-                Console.Write("\nAttempt number {0}:  ", attempts);
+                Console.WriteLine("\nTries left:  {0}", (11 - attempts));
+                Console.WriteLine("ENTER CODE:");
+                Console.Write(">");
 
-                if (Int32.TryParse(Console.ReadLine(), out guess))
+                guess = Console.ReadLine();
+
+                if (guess == correctNumber)
                 {
-                    Console.WriteLine("\nYou picked " + guess);
-
-                    if (guess == number)
-                    {
-                        Console.WriteLine("You opened the lock.");
-                        break;
-                    }
-                    else
-                    {
-                        attempts++;
-
-                        if (guess < number)
-                        {
-                            Console.WriteLine("Seems like you need a bigger number.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Seems like you need a smaller number.");
-                        }
-                    }
+                    Console.WriteLine("**CORRECT**");
+                    gameComplete = true;
+                    gameIsRunning = false;
+                    return;
                 }
                 else
                 {
-                    Console.WriteLine("That's not a number.");
+                    Console.WriteLine("**INCORRECT**");
+                    attempts++;
                 }
+                Console.WriteLine("Do you want to try again? (Y/N)");
+                Console.Write(">");
+                string answer = Console.ReadLine().ToUpper();
+                if (answer == "N")
+                {
+                    return;
+                }
+
             }
+            Console.WriteLine("**UNAUTHORIZED PERSONEL DETECTED**");
+            Console.WriteLine("You hear doors lock all around the hospital and hear sounds of growling and slowly moving people around you.");
+            Console.WriteLine("In your terrified state your heart stops and you die.");
+            Console.WriteLine("*************** GAME OVER ***************");
+            gameIsRunning = false;
+            return;
+        }
+
+        public void GenerateRandomNumber()
+        {
+            rndNumber = rnd.Next(0, 10);
         }
     }
 }
