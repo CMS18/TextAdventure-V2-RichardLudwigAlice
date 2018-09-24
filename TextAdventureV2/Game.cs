@@ -127,7 +127,7 @@ namespace TextAdventureV2
             keypad = new Item();
             keypad.AddName("KEYPAD");
             keypad.AddDescription("A remote keypad that looks like it is used with the big door at the entrance.");
-            keypad.AddRoomDescription("There is a mobile remote on the wall.");
+            keypad.AddRoomDescription("There is a mobile remote keypad on the wall.");
             keypad.AddId("id6");
             keypad.AddMatchId("midNULL");
             keypad.SetUsable(true);
@@ -160,7 +160,7 @@ namespace TextAdventureV2
 
             entrance = new Room();
             entrance.AddName("ENTRANCE");
-            entrance.AddDescription("There is a large entrance door to the north and a keypad next to it.");
+            entrance.AddDescription("There is a large entrance door to the north.");
             entrance.AddItem(keypad);
 
             hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked", "id1", "door", "A white door. Looks like it leads out to the hall"));
