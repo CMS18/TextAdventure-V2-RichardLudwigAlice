@@ -45,7 +45,7 @@ namespace TextAdventureV2
                     string answer = Console.ReadLine().ToUpper();
                     if (answer != "Y")
                     {
-                        Console.WriteLine("Leaving the console.");
+                        Console.WriteLine("Leaving the keypad.");
                         return;
                     }
                 }
