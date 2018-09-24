@@ -348,9 +348,9 @@ namespace TextAdventureV2
             Console.WriteLine("INSPECT ...              Inspects your inventory.");
             Console.WriteLine("USE ...                  Use an item from your inventory.");            
         }
+
         private void Puzzle()
         {
-
             Random random = new Random();
             Console.WriteLine("Seems like the lock needs a number between 1 and 10 to be unlocked. You have 3 attempts.");
 
@@ -386,7 +386,7 @@ namespace TextAdventureV2
                         }
                     }
                 }
-                    else
+                else
                 {
                     Console.WriteLine("That's not a number.");
                 }
