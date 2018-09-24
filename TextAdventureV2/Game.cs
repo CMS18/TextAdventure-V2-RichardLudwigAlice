@@ -127,7 +127,7 @@ namespace TextAdventureV2
             keypad = new Item();
             keypad.AddName("KEYPAD");
             keypad.AddDescription("A remote keypad that looks like it is used with the big door at the entrance.");
-            keypad.AddRoomDescription("There is a mobile remote keypad on the wall.");
+            keypad.AddRoomDescription("There is a mobile remote keypad on the wall. Looks like you can remove the keypad.");
             keypad.AddId("id6");
             keypad.AddMatchId("midNULL");
             keypad.SetUsable(true);
@@ -353,6 +353,8 @@ namespace TextAdventureV2
             exits = currentRoom.GetExits();
             if (input.Length < 1)
             {
+                Console.WriteLine("What do you want to expect?");
+                Console.Write(">");
                 input = Console.ReadLine().Split(' ');
             }
             foreach (Item item in playerInventory)
@@ -371,6 +373,7 @@ namespace TextAdventureV2
                     return;
                 }
             }
+            Console.WriteLine("Can't do that");
         }
 
         private void Use(string[] input)

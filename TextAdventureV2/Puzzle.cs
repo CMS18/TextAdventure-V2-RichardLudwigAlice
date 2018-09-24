@@ -10,10 +10,11 @@ namespace TextAdventureV2
     {
         Random rnd = new Random();
         private int rndNumber;
+        int attempts = 1;
         public void RunPuzzle(ref bool gameIsRunning, ref bool gameComplete)
         {
 
-            int attempts = 1;
+            
             string guess = "0";
             string correctNumber = "461" + rndNumber.ToString();
 
@@ -39,11 +40,12 @@ namespace TextAdventureV2
                 }
                 if (attempts < 10)
                 {
-                    Console.WriteLine("Do you want to try again? (Y/N)");
+                    Console.WriteLine("Do you want to try again? (Type Y to try again)");
                     Console.Write(">");
                     string answer = Console.ReadLine().ToUpper();
                     if (answer != "Y")
                     {
+                        Console.WriteLine("Leaving the console.");
                         return;
                     }
                 }
