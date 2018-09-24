@@ -36,7 +36,6 @@ namespace TextAdventureV2
             this.lockId = lockId;
             this.lockType = lockType;
             this.lockDescription = lockDescription;
-
         }
 
         public string GetDirection()

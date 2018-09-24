@@ -93,7 +93,5 @@ namespace TextAdventureV2
         {
             return exits;
         }
-
-        
     }
 }
