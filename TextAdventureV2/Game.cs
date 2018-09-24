@@ -41,9 +41,9 @@ namespace TextAdventureV2
             // Skriv ut namn på spelet osv.
             Int32 width = Console.LargestWindowWidth;
             Int32 height = Console.LargestWindowHeight;
-            Console.Title = "The Escape from Zombie Hospital";            
-            Console.WindowWidth = width/2;
-            Console.WindowHeight = height/2;
+            Console.Title = "The Escape from Zombie Hospital";
+            Console.WindowWidth = width * 4 / 5;
+            Console.WindowHeight = height * 4 / 5;
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);
             //Console.SetWindowSize(Width, Height);
             Console.WriteLine("The escape from zombie hospital V0.1");
