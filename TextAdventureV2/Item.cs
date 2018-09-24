@@ -13,6 +13,7 @@ namespace TextAdventureV2
         public string RoomDescription { get; set; }
         public bool Usable { get; set; }
         public string Id { get; set; }
+        public string MatchId { get; set; }
 
         public Item()
         {
@@ -20,6 +21,7 @@ namespace TextAdventureV2
             Description = "";
             Usable = false;
             Id = "";
+            MatchId = "0";
         }
 
         public void AddName (string name)
@@ -42,6 +44,11 @@ namespace TextAdventureV2
             Id = id;
         }
 
+        public void AddMatchId (string id)
+        {
+            MatchId = id;
+        }
+
         public void SetUsable(bool value)
         {
             Usable = value;
@@ -55,6 +62,11 @@ namespace TextAdventureV2
         public string GetId()
         {
             return Id;
+        }
+
+        public string GetMatchId()
+        {
+            return MatchId;
         }
     }
 }

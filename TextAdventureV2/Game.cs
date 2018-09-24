@@ -21,8 +21,12 @@ namespace TextAdventureV2
         List<Item> roomInventory = new List<Item>();
         List<Exit> exits = new List<Exit>();
 
+        
         Item key;
         Item journal;
+        Item finger;
+        Item cellphone;
+        Item unlockedCellphone;
 
         private bool gameIsRunning = true;
 
@@ -45,10 +49,10 @@ namespace TextAdventureV2
             Console.WindowWidth = width * 4 / 5;
             Console.WindowHeight = height * 4 / 5;
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);
-            //Console.SetWindowSize(Width, Height);
+     
             Console.WriteLine("The escape from zombie hospital V0.1");
             this.Pause();
-            Console.Clear();
+            Console.Clear();            
         }
 
         private void InitializeItems()
@@ -58,6 +62,7 @@ namespace TextAdventureV2
             key.AddDescription("An old brass key. Looks just like any other.");
             key.AddRoomDescription("A brass key lays on the floor.");
             key.AddId("id1");
+            key.AddMatchId("mid1");
             key.SetUsable(true);
 
             journal = new Item();
@@ -67,6 +72,32 @@ namespace TextAdventureV2
                 + $"AGE: {player.GetAge()}\n"
                 + "SYMPTONS: Coma.");
             journal.AddRoomDescription("There is a thrown journal on the ground.");
+            journal.AddId("id2");
+            journal.AddMatchId("midNULL");
+
+            finger = new Item();
+            finger.AddName("FINGER");
+            finger.AddDescription("The finger from a dead guard.");
+            finger.AddRoomDescription("You can see a severed finger laying on the floor.");
+            finger.AddId("id3");
+            finger.AddMatchId("mid3");
+            finger.SetUsable(true);
+
+            cellphone = new Item();
+            cellphone.AddName("CELLPHONE");
+            cellphone.AddDescription("The cellphone of the dead guard.");
+            cellphone.AddRoomDescription("There is a cellphone laying on the ground.");
+            cellphone.AddId("id4");
+            cellphone.AddMatchId("mid3");
+
+            unlockedCellphone = new Item();
+            unlockedCellphone.AddName("CELLPHONE");
+            unlockedCellphone.AddDescription("The unlocked cellphone of the dead guard. You can see a note on the phone:\n"
+                + "Building code: 461-\n\n"
+                + "It looks like the last number is missing...");
+            unlockedCellphone.AddRoomDescription("There is a cellphone laying on the ground.");
+            unlockedCellphone.AddId("id5");
+            unlockedCellphone.AddMatchId("midNULL");
 
         }
 
@@ -90,7 +121,10 @@ namespace TextAdventureV2
             hallway.AddName("HALLWAY");
             hallway.AddDescription("There's no people around and everything else seems fine.\n"
                 + "There's an empty reception with a computer and a phone at the far end of the hallway.\n"
-                + "To the east, the corridor turns and to the north is an emergency exit");
+                + "To the east the corridor turns and to the north is an emergency exit.\n"
+                + "There is also a dead guard laying on the ground.");
+            hallway.AddItem(cellphone);
+            hallway.AddItem(finger);
 
             hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked", "id1", "door", "A white door. Looks like it leads out to the hall"));
             hospitalBedroom.AddExit(new Exit(bathroom, "West"));
@@ -279,7 +313,7 @@ namespace TextAdventureV2
             exits = currentRoom.GetExits();
             foreach (Item item in playerInventory)
             {
-                if (item.Name == input[0])
+                if (input.Contains(item.Name))
                 {
                     Console.WriteLine(item.Description);
                     return;
@@ -309,6 +343,9 @@ namespace TextAdventureV2
                         {
                             Console.WriteLine("On what?");
                             input = Console.ReadLine().ToUpper().Split(' ');
+                        } else
+                        {
+                        input = input.Skip(1).ToArray();
                         }
                         foreach (Exit exit in exits)
                         {
@@ -319,6 +356,20 @@ namespace TextAdventureV2
                                     exit.Unlock();
                                     Console.WriteLine("Unlocked.");
                                     player.RemoveItem(item);
+                                    return;
+                                }
+                            }
+                        }
+                        foreach (Item inventoryItem in playerInventory)
+                        {
+                            if (input.Contains(inventoryItem.Name))
+                            {
+                                if (inventoryItem.GetMatchId() == item.GetMatchId())
+                                {
+                                    player.RemoveItem(item);
+                                    player.RemoveItem(inventoryItem);
+                                    player.AddItem(unlockedCellphone);
+                                    Console.WriteLine("You unlocked the phone with the finger.");
                                     return;
                                 }
                             }
