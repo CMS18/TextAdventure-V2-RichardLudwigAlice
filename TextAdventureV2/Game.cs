@@ -351,6 +351,10 @@ namespace TextAdventureV2
         {
             playerInventory = player.GetInventory();
             exits = currentRoom.GetExits();
+            if (input.Length < 1)
+            {
+                input = Console.ReadLine().Split(' ');
+            }
             foreach (Item item in playerInventory)
             {
                 if (input.Contains(item.Name))
