@@ -17,7 +17,7 @@ namespace TextAdventureV2
             string guess = "0";
             string correctNumber = "461" + rndNumber.ToString();
 
-            while (guess != correctNumber && attempts < 10)
+            while (guess != correctNumber && attempts <= 10)
             {
                 Console.WriteLine("\nTries left:  {0}", (11 - attempts));
                 Console.WriteLine("ENTER CODE:");
