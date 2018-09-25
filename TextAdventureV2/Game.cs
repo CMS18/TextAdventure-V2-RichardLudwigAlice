@@ -75,7 +75,7 @@ namespace TextAdventureV2
             Console.WindowHeight = height * 4 / 5;
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);
      
-            Console.WriteLine("The escape from zombie hospital V0.1");
+            Console.WriteLine("The Escape from Zombie Hospital V0.1");
             this.Pause();
             Console.Clear();
         }
