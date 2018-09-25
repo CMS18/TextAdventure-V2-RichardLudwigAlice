@@ -75,7 +75,7 @@ namespace TextAdventureV2
             Console.WindowHeight = height * 4 / 5;
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);
      
-            Console.WriteLine("The escape from zombie hospital V0.1");
+            Console.WriteLine("The Escape from Zombie Hospital V0.1");
             this.Pause();
             Console.Clear();
         }
@@ -400,7 +400,8 @@ namespace TextAdventureV2
                         {
                             Console.WriteLine("On what?");
                             input = Console.ReadLine().ToUpper().Split(' ');
-                        } else
+                        }
+                        else
                         {
                         input = input.Skip(1).ToArray();
                         }
@@ -433,8 +434,8 @@ namespace TextAdventureV2
                         }
                         Console.WriteLine("Can't use (the) " + item.Name.ToLower() + " on that.");
                         return;
-                        
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("Can't use that");
                         return;
