@@ -163,7 +163,7 @@ namespace TextAdventureV2
             entrance.AddDescription("There is a large entrance door to the north.");
             entrance.AddItem(keypad);
 
-            hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked", "id1", "door", "A white door. Looks like it leads out to the hall"));
+            hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked", "id1", "door", "A white door. Looks like it leads out to the hall."));
             hospitalBedroom.AddExit(new Exit(bathroom, "West"));
             hallway.AddExit(new Exit(hospitalBedroom, "West"));
             bathroom.AddExit(new Exit(hospitalBedroom, "East"));
@@ -192,7 +192,7 @@ namespace TextAdventureV2
         private void Introduction()
         {
             Console.WriteLine($"You wake up in a hospital bed dressed in a patient gown.\n"
-                + "The dark room is only being lit up by a small dingy light on the oppside side of the room.\n"
+                + "The dark room is only being lit up by a small dim light on the oppside side of the room.\n"
                 + "The clock above the door on the east wall ticks with a loud \"TICK, TOCK\" in an otherwise silent room.\n"
                 + "You unplug the IV from your arm and start to get up...");
             Pause();
@@ -310,6 +310,11 @@ namespace TextAdventureV2
 
         private void Drop(string[] input)
         {
+            if (input.Length < 1)
+            {
+                Console.WriteLine("What do you want to drop?");
+                input = Console.ReadLine().ToUpper().Split(' ').ToArray();
+            }
             playerInventory = player.GetInventory();
 
             foreach(Item item in playerInventory)
@@ -353,7 +358,7 @@ namespace TextAdventureV2
             exits = currentRoom.GetExits();
             if (input.Length < 1)
             {
-                Console.WriteLine("What do you want to expect?");
+                Console.WriteLine("What do you want to inspect?");
                 Console.Write(">");
                 input = Console.ReadLine().Split(' ');
             }
@@ -367,7 +372,7 @@ namespace TextAdventureV2
             }
             foreach (Exit exit in exits)
             {
-                if (exit.GetLockedDescription() == input[0])
+                if (exit.GetLockType().ToUpper() == input[0])
                 {
                     Console.WriteLine(exit.lockDescription);
                     return;
