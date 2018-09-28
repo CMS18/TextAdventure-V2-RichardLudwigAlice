@@ -18,10 +18,10 @@ namespace TextAdventureV2
             string guess = "0";
             string correctNumber = "461" + rndNumber.ToString();
 
-            while (guess != correctNumber && attempts <= 10)
+            while (guess != correctNumber && attempts <= 3)
             {
-                Console.WriteLine("\nTries left:  {0}", (11 - attempts));
-                Console.WriteLine("ENTER CODE:");
+                Console.WriteLine("\nTries left:  {0}", (4 - attempts));
+                Console.WriteLine("ENTER 4-DIGIT CODE:");
                 Console.Write(">");
 
                 guess = Console.ReadLine();
@@ -38,7 +38,7 @@ namespace TextAdventureV2
                     Console.WriteLine("**INCORRECT**");
                     attempts++;
                 }
-                if (attempts < 10)
+                if (attempts <= 3)
                 {
                     Console.WriteLine("Do you want to try again? (Type Y to try again)");
                     Console.Write(">");
@@ -61,7 +61,8 @@ namespace TextAdventureV2
 
         public void GenerateRandomNumber()
         {
-            rndNumber = rnd.Next(0, 10);
+            // rndNumber = rnd.Next(0, 10);
+            rndNumber = 8;
         }
     }
 }

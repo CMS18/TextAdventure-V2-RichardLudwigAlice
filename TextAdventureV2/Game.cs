@@ -58,6 +58,7 @@ namespace TextAdventureV2
                 Console.Clear();
                 Console.WriteLine("YOU DIED! Now go outside to contemplate on your own life...");
             }
+        Console.ReadKey();
         }
 
         private void InitializePuzzle()
@@ -75,7 +76,7 @@ namespace TextAdventureV2
             Console.WindowHeight = height * 4 / 5;
             Console.SetWindowPosition(Console.WindowLeft, Console.WindowTop);
      
-            Console.WriteLine("The Escape from Zombie Hospital V0.1");
+            Console.WriteLine("The Escape from Zombie Hospital V1.0");
             this.Pause();
             Console.Clear();
         }
@@ -84,7 +85,7 @@ namespace TextAdventureV2
         {
             key = new Item();
             key.AddName("KEY");
-            key.AddDescription("An old brass key. Looks just like any other.");
+            key.AddDescription("An old brass key. Looks just like any other key.");
             key.AddRoomDescription("A brass key lays on the floor.");
             key.AddId("id1");
             key.AddMatchId("mid1");
@@ -110,7 +111,7 @@ namespace TextAdventureV2
 
             cellphone = new Item();
             cellphone.AddName("CELLPHONE");
-            cellphone.AddDescription("The cellphone of the dead guard. It is locked with a fingerprint password.");
+            cellphone.AddDescription("The cellphone of the dead guard. It is locked and only unlockable with a fingerprint scanner.");
             cellphone.AddRoomDescription("There is a cellphone laying on the ground.");
             cellphone.AddId("id4");
             cellphone.AddMatchId("mid3");
@@ -126,8 +127,8 @@ namespace TextAdventureV2
 
             keypad = new Item();
             keypad.AddName("KEYPAD");
-            keypad.AddDescription("A remote keypad that looks like it is used with the big door at the entrance.");
-            keypad.AddRoomDescription("There is a mobile remote keypad on the wall. Looks like you can remove the keypad.");
+            keypad.AddDescription("A remote keypad that looks like it is connected to the big door at the entrance.");
+            keypad.AddRoomDescription("There is a mobile remote keypad on the wall. Looks like you can take the keypad.");
             keypad.AddId("id6");
             keypad.AddMatchId("midNULL");
             keypad.SetUsable(true);
@@ -144,17 +145,16 @@ namespace TextAdventureV2
 
             bathroom = new Room();
             bathroom.AddName("BATHROOM");
-            bathroom.AddDescription("The bathroom looks clean but like someone left in a rush.\n"
+            bathroom.AddDescription("It look's like someone left in a rush.\n"
                 + "The water is still running and the toilet has not been flushed (Ugh!).\n"
-                + "There is also a broken window here and alot of broken glass lying around.");
+                + "There is also a broken window here and a lot of broken glass lying around.");
             bathroom.AddItem(key);
 
             hallway = new Room();
             hallway.AddName("HALLWAY");
-            hallway.AddDescription("There's no people around and everything else seems fine.\n"
-                + "There's an empty reception with a computer and a stationary phone at the far end of the hallway.\n"
+            hallway.AddDescription("There's an empty reception with a computer and a stationary phone at the far end of the hallway.\n"
                 + "To the east the corridor turns and to the north is a barred emergency exit.\n"
-                + "There is also a dead guard laying on the ground.");
+                + "There is a dead guard in the room.");
             hallway.AddItem(cellphone);
             hallway.AddItem(finger);
 
@@ -163,7 +163,7 @@ namespace TextAdventureV2
             entrance.AddDescription("There is a large entrance door to the north.");
             entrance.AddItem(keypad);
 
-            hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked.", "id1", "door", "A white door. Looks like it leads out to the hall"));
+            hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked.", "id1", "door", "A white door. Looks like it leads out to the hall."));
             hospitalBedroom.AddExit(new Exit(bathroom, "West"));
             hallway.AddExit(new Exit(hospitalBedroom, "West"));
             bathroom.AddExit(new Exit(hospitalBedroom, "East"));
