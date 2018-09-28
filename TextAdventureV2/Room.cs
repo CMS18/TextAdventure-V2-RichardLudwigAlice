@@ -53,7 +53,7 @@ namespace TextAdventureV2
 
             foreach (Item item in inventory)
             {
-                roomAndItemDescriptions.Append(" " + item.RoomDescription);
+                roomAndItemDescriptions.Append("\n" + item.RoomDescription);
             }
 
             return roomAndItemDescriptions.ToString();            

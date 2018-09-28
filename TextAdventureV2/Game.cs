@@ -138,8 +138,8 @@ namespace TextAdventureV2
             hospitalBedroom = new Room();
             hospitalBedroom.AddName("HOSPITAL BEDROOM");
             hospitalBedroom.AddDescription("There is an empty bed with blood on it right next to yours.\n"
-                + "You can also see a door to the west wall that seems to be leading into the bathroom.\n"
-                + "There is also another door on the east wall.");
+                + "You can also see a doorway on the west wall that seems to be leading into the bathroom.\n"
+                + "There is also a door on the east wall.");
             hospitalBedroom.AddItem(journal);
 
             bathroom = new Room();
@@ -163,7 +163,7 @@ namespace TextAdventureV2
             entrance.AddDescription("There is a large entrance door to the north.");
             entrance.AddItem(keypad);
 
-            hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked", "id1", "door", "A white door. Looks like it leads out to the hall"));
+            hospitalBedroom.AddExit(new Exit(hallway, "East", true, "The door is locked.", "id1", "door", "A white door. Looks like it leads out to the hall"));
             hospitalBedroom.AddExit(new Exit(bathroom, "West"));
             hallway.AddExit(new Exit(hospitalBedroom, "West"));
             bathroom.AddExit(new Exit(hospitalBedroom, "East"));
@@ -192,7 +192,7 @@ namespace TextAdventureV2
         private void Introduction()
         {
             Console.WriteLine($"You wake up in a hospital bed dressed in a patient gown.\n"
-                + "The dark room is only being lit up by a small dingy light on the oppside side of the room.\n"
+                + "The room is only being lit up by a small dim light on the opposite side of the room.\n"
                 + "The clock above the door on the east wall ticks with a loud \"TICK, TOCK\" in an otherwise silent room.\n"
                 + "You unplug the IV from your arm and start to get up...");
             Pause();
