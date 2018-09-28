@@ -310,6 +310,11 @@ namespace TextAdventureV2
 
         private void Drop(string[] input)
         {
+            if (input.Length < 1)
+            {
+                Console.WriteLine("What do you want to drop?");
+                input = Console.ReadLine().ToUpper().Split(' ').ToArray();
+            }
             playerInventory = player.GetInventory();
 
             foreach(Item item in playerInventory)
@@ -353,7 +358,7 @@ namespace TextAdventureV2
             exits = currentRoom.GetExits();
             if (input.Length < 1)
             {
-                Console.WriteLine("What do you want to expect?");
+                Console.WriteLine("What do you want to inspect?");
                 Console.Write(">");
                 input = Console.ReadLine().Split(' ');
             }
@@ -367,7 +372,7 @@ namespace TextAdventureV2
             }
             foreach (Exit exit in exits)
             {
-                if (exit.GetLockedDescription() == input[0])
+                if (exit.GetLockType().ToUpper() == input[0])
                 {
                     Console.WriteLine(exit.lockDescription);
                     return;
