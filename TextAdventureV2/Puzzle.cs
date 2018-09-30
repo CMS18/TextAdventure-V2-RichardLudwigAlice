@@ -51,8 +51,8 @@ namespace TextAdventureV2
                 }
 
             }
-            Console.WriteLine("**UNAUTHORIZED PERSONEL DETECTED**");
-            Console.WriteLine("You hear doors lock all around the hospital and hear sounds of growling and slowly moving people around you.");
+            Console.WriteLine("**UNAUTHORIZED PERSONNEL DETECTED**");
+            Console.WriteLine("You hear doors lock all around the hospital and sounds of growling and slowly moving people around you.");
             Console.WriteLine("In your terrified state your heart stops and you die.");
             Console.ReadLine();
             gameIsRunning = false;

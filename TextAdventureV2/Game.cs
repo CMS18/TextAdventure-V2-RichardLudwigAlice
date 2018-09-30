@@ -96,14 +96,14 @@ namespace TextAdventureV2
             journal.AddDescription("The journal reads:\n"
                 + $"NAME: {player.GetName()}\n"
                 + $"AGE: {player.GetAge()}\n"
-                + "SYMPTONS: Coma.");
+                + "SYMPTOMS: Coma.");
             journal.AddRoomDescription("There is a thrown journal on the ground.");
             journal.AddId("id2");
             journal.AddMatchId("midNULL");
 
             finger = new Item();
             finger.AddName("FINGER");
-            finger.AddDescription("The finger from a dead guard.");
+            finger.AddDescription("The finger of a dead guard.");
             finger.AddRoomDescription("You can see a severed finger laying on the floor.");
             finger.AddId("id3");
             finger.AddMatchId("mid3");
@@ -145,7 +145,7 @@ namespace TextAdventureV2
 
             bathroom = new Room();
             bathroom.AddName("BATHROOM");
-            bathroom.AddDescription("It look's like someone left in a rush.\n"
+            bathroom.AddDescription("It looks like someone left in a rush.\n"
                 + "The water is still running and the toilet has not been flushed (Ugh!).\n"
                 + "There is also a broken window here and a lot of broken glass lying around.");
             bathroom.AddItem(key);
@@ -378,7 +378,7 @@ namespace TextAdventureV2
                     return;
                 }
             }
-            Console.WriteLine("Can't do that");
+            Console.WriteLine("Can't do that.");
         }
 
         private void Use(string[] input)
@@ -453,8 +453,8 @@ namespace TextAdventureV2
             Console.WriteLine("GET/TAKE/PICK/PICK UP    Pick up something.");
             Console.WriteLine("INVENTORY/I              Check your inventory.");
             Console.WriteLine("DROP ...                 Drop an item from your inventory.");
-            Console.WriteLine("GO ...                   Tries to go a certain direction");
-            Console.WriteLine("INSPECT ...              Inspects your inventory.");
+            Console.WriteLine("GO ...                   Try to go a certain direction.");
+            Console.WriteLine("INSPECT ...              Inspect an item from your inventory.");
             Console.WriteLine("USE ...                  Use an item from your inventory.");            
         }      
     }
